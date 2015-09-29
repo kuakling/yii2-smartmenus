@@ -27,7 +27,7 @@ class Gen extends \yii\base\Widget
     		$this->r .= ' '.$key.'="'.$value.'"';
     	}
     	$this->r .= '>';
-    	$this->r .= '<ul id="main-menu" class="sm '.$this->template['name'].'">';
+    	$this->r .= '<ul id="'.$this->id.'-sm-menus" class="sm '.$this->template['name'].'">';
     	$this->r .= $this->menu($this->items);
     	$this->r .= '</ul>';
     	$this->r .= '</div>';
@@ -43,7 +43,7 @@ class Gen extends \yii\base\Widget
 
         foreach ($items as $item) {
         	$this->r .= '<li>';
-        	$this->r .= '<a href="#">';
+        	$this->r .= '<a href="'.$item['url'].'" '.$item['linkOptions'].'>';
             $this->r .= $item['label'];
             $this->r .= '</a>';
             if(array_key_exists('items', $item)){
@@ -74,7 +74,7 @@ class Gen extends \yii\base\Widget
 
         $this->getView()->registerCssFile($templateFile);
 
-        $js = "$('#main-menu').smartmenus();";
+        $js = "$('#".$this->id."-sm-menus').smartmenus();";
         $view->registerJs($js);
     }
 }

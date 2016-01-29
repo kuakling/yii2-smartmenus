@@ -72,7 +72,10 @@ class Gen extends \yii\base\Widget
         else
         	$templateFile = $this->template['file'];
 
-        $this->getView()->registerCssFile($templateFile);
+        $view->registerCssFile(
+            $templateFile,
+            ['depends' => [SmartMenusAsset::className()],]
+        );
 
         $js = "$('#".$this->id."-sm-menus').smartmenus();";
         $view->registerJs($js);
